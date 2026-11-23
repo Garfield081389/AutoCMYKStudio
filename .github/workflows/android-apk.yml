@@ -68,5 +68,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: AutoCMYKStudio-debug-apk  
+          name: AutoCMYKStudio-debug-apk   
           path: AutoCMYKStudio/app/build/outputs/apk/debug/app-debug.apk
