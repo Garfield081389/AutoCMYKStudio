@@ -48,6 +48,20 @@ jobs:
       - name: Extract project
         run: unzip -q "AutoCMYKStudio_Android_Project(1).zip"
 
+      - name: Fix Java and Kotlin JVM targets
+        run: |
+          cat >> AutoCMYKStudio/app/build.gradle.kts <<'EOF'
+
+          tasks.withType<org.gradle.api.tasks.compile.JavaCompile>().configureEach {
+              sourceCompatibility = "17"
+              targetCompatibility = "17"
+          }
+
+          tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+              kotlinOptions.jvmTarget = "17"
+          }
+          EOF
+
       - name: Build APK
         run: gradle -p AutoCMYKStudio :app:assembleDebug
 
